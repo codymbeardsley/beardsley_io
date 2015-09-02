@@ -18,7 +18,7 @@ var client = new Twitter({
 app.use(express.static(__dirname + '/static'));
 
 app.get('/twitter', cors(corsOptions), function (req, res) {
-	var params = {sreen_name: req.param('username')};
+	var params = {screen_name: req.query['username']};
 	client.get('statuses/user_timeline', params, function(error, tweets, response){
 		if (!error) {
 			res.json({tweets: tweets});
