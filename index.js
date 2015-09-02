@@ -5,6 +5,7 @@ var app = express();
 var corsOptions = {
   origin: 'http://run.plnkr.co'
 };
+
 var Twitter = require('twitter');
  
 var client = new Twitter({
@@ -21,6 +22,9 @@ app.get('/twitter', cors(corsOptions), function (req, res) {
 	var params = {screen_name: req.query['username']};
 	client.get('statuses/user_timeline', params, function(error, tweets, response){
 		if (!error) {
+			for(var i = 0; i < tweets.length; i++){
+				tweets[i].text = tweets[i].text.replace(/@/g,"@#");
+			}
 			res.json({tweets: tweets});
 		}
 	});
