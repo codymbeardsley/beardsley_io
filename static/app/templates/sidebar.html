@@ -1,0 +1,9 @@
+<section class="navigation">
+	<div ng-repeat="page in navigationService.pages" 
+		class="page" 
+		ng-click="navigationService.currentPage = page"
+		ng-class="{active: navigationService.currentPage == page}">
+		<div class="title">{{ page.title }}</div>
+		<div class="id">{{ page.id }}</div>
+	</div>
+</section>
